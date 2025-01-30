@@ -1,0 +1,15 @@
+{% extends "base.html" %}
+
+{% block content %}
+  <h2>Upload Your Image</h2>
+  <form action="/process" method="POST" enctype="multipart/form-data">
+    <input type="file" name="image" accept="image/*" required>
+    <button type="submit">Analyze Image</button>
+  </form>
+  {% if result %}
+    <h3>Results:</h3>
+    <p><strong>Initial Caption:</strong> {{ result.initial_caption }}</p>
+    <p><strong>Enhanced Caption:</strong> {{ result.enhanced_caption }}</p>
+    <p><strong>Sentiment:</strong> {{ result.sentiment.label }} (Confidence: {{ result.sentiment.score }})</p>
+  {% endif %}
+{% endblock %}
